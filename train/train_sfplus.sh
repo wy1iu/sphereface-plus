@@ -1,0 +1,1 @@
+nohup ./../tools/caffe-sfplus/build/tools/caffe train -solver code/sfplus/sfplus_solver.prototxt -weights pretrained_model/sphereface_model_iter_28000_9927.caffemodel -gpu 0,1 > result/sfplus_train.log 2>&1 &
