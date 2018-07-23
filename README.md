@@ -6,18 +6,17 @@
 SphereFace-Plus is released under the MIT License (refer to the LICENSE file for details).
 
 ### TODO
-1. citation
-2. installation
-3. results
+- [ ] citation
+- [ ] installation
 
 ### Content
-0. [Introduction](#introduction)
-0. [Citation](#citation)
-0. [Requirements](#requirements)
-0. [Installation](#installation)
-0. [Usage](#usage)
-0. [Results](#results)
-0. [Contact](#contact)
+1. [Introduction](#introduction)
+2. [Citation](#citation)
+3. [Requirements](#requirements)
+4. [Installation](#installation)
+5. [Usage](#usage)
+6. [Results](#results)
+7. [Contact](#contact)
 
 
 ### Introduction
@@ -25,7 +24,7 @@ Inspired by prior knowledge that weights of classifier represent the center of e
 
 
 ### Citation
-[ ]**TODO**
+**TODO**
 
 ### Requirements
 1. Requirements for [CUDA 8.0 for Linux](https://developer.nvidia.com/cuda-80-ga2-download-archive)
