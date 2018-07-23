@@ -1,20 +1,20 @@
-net: "code/sfplus/sfplus_model.prototxt"
+net: "code/sfplus/m_double_model.prototxt"
 #test_iter: 100 
 #test_interval: 2000
 
-base_lr: 0.01
+base_lr: 0.1
 lr_policy: "multistep"
 gamma: 0.1
 
-stepvalue: 4000
-stepvalue: 6000
+stepvalue: 5000
+#stepvalue: 11000
 max_iter: 8000
 
-display: 10
+display: 50
 momentum: 0.9
 weight_decay: 0.0005
 snapshot: 500
-snapshot_prefix: "result/sfplus_model"
+snapshot_prefix: "result/m_double_model"
 
 solver_mode: GPU
 layer_wise_reduce: false

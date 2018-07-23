@@ -1,0 +1,20 @@
+net: "code/sfplus/m_single_model.prototxt"
+#test_iter: 100 
+#test_interval: 2000
+
+base_lr: 0.05
+lr_policy: "multistep"
+gamma: 0.2
+
+stepvalue: 7000
+stepvalue: 11000
+max_iter: 11000
+
+display: 20
+momentum: 0.9
+weight_decay: 0.0005
+snapshot: 500
+snapshot_prefix: "result/m_single_model"
+
+solver_mode: GPU
+layer_wise_reduce: false # for multi GPU

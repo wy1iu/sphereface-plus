@@ -1,4 +1,4 @@
-name: "SpherefacePlus-20"
+name: "SpherefacePlusTriple-20"
 layer {
   name: "data"
   type: "ImageData"
@@ -813,15 +813,15 @@ layer {
   }
   margin_inner_product_param {
     num_output: 10572
-    type: QUADRUPLE
+    type: TRIPLE
     weight_filler {
       type: "xavier"
     }
     base: 1000
-    gamma: 0.12
+    gamma: 0.11
     power: 1
     lambda_min: 5
-    iteration: 2000
+    iteration: 0
   }
 }
 layer {
@@ -840,7 +840,7 @@ layer {
     type: AMONG
     iteration: 16000
     alpha_start_iter: 16001
-    alpha_start_value: 10 #among
+    alpha_start_value: 2.3 #among
   }
 }
 layer {

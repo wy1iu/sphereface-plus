@@ -1,4 +1,4 @@
-name: "SpherefacePlus-20"
+name: "SpherefacePlusSingle-20"
 layer {
   name: "data"
   type: "ImageData"
@@ -798,7 +798,7 @@ layer {
     }
   }
 }
-############### A-Softmax Loss ##############
+############ A-Softmax Loss ############
 layer {
   name: "fc6"
   type: "MarginInnerProduct"
@@ -807,13 +807,13 @@ layer {
   top: "fc6"
   top: "lambda"
   param {
-    name: "fc6_w"
+    name:"fc6_w"
     lr_mult: 1
     decay_mult: 1
   }
   margin_inner_product_param {
     num_output: 10572
-    type: QUADRUPLE
+    type: SINGLE
     weight_filler {
       type: "xavier"
     }
@@ -821,7 +821,7 @@ layer {
     gamma: 0.12
     power: 1
     lambda_min: 5
-    iteration: 2000
+    iteration: 0
   }
 }
 layer {
@@ -840,7 +840,7 @@ layer {
     type: AMONG
     iteration: 16000
     alpha_start_iter: 16001
-    alpha_start_value: 10 #among
+    alpha_start_value: 5.3
   }
 }
 layer {

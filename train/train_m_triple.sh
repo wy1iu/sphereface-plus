@@ -1,0 +1,1 @@
+nohup ./../tools/caffe-sfplus/build/tools/caffe train -solver code/sfplus/m_triple_solver.prototxt -weights pretrained_model/sphereface_triple_model_lfw_9893.caffemodel -gpu 2,3 > result/m_triple_train.log 2>&1 &

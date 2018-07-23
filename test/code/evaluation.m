@@ -31,7 +31,7 @@ end
 caffe.reset_all();
 
 model   = '../train/code/sfplus/sfplus_deploy.prototxt';
-weights = '../train/result/sfplus_model_iter_3000.caffemodel';
+weights = '../train/result/sfplus_model_iter_8000.caffemodel';
 %weights = '../train/result_softmax/baseline/baseline_softmax_model_iter_13000.caffemodel';
 %weights = '../train/result_softmax/among/softmax_model_iter_11000.caffemodel';
 %weights = '../train/result_normsoftmax/among/normsoftmax_model_iter_1000.caffemodel';
