@@ -1,9 +1,9 @@
-# *SphereFace-Plus* : Improving Inter-class Feature Separability via MHE for Face Recognition
+# *SphereFace+* : Improving Inter-class Feature Separability via MHE for Face Recognition
 
 
 ### License
 
-SphereFace-Plus is released under the MIT License (refer to the LICENSE file for details).
+SphereFace+ is released under the MIT License (refer to the LICENSE file for details).
 
 ### TODO
 - [ ] installation
