@@ -6,7 +6,6 @@
 SphereFace-Plus is released under the MIT License (refer to the LICENSE file for details).
 
 ### TODO
-- [ ] citation
 - [ ] installation
 
 ### Content
@@ -24,7 +23,14 @@ Inspired by prior knowledge that weights of classifier represent the center of e
 
 
 ### Citation
-**TODO**
+If you find **SphereFace+** useful in your research, please consider to cite:
+
+	  @article{LiuNIPS18,
+             title={Learning towards Minimum Hyperspherical Energy},
+             author={Liu, Weiyang and Lin, Rongmei and Liu, Zhen and Liu, Lixin and Yu, Zhiding and Dai, Bo and Song, Le},
+             journal={NIPS},
+             year={2018}
+	  }
 
 ### Requirements
 1. Requirements for [CUDA 8.0 for Linux](https://developer.nvidia.com/cuda-80-ga2-download-archive)
