@@ -16,7 +16,8 @@ SphereFace-Plus is released under the MIT License (refer to the LICENSE file for
 4. [Installation](#installation)
 5. [Usage](#usage)
 6. [Results](#results)
-7. [Contact](#contact)
+7. [Reference](#reference)
+8. [Contact](#contact)
 
 
 ### Introduction
@@ -24,7 +25,14 @@ Inspired by prior knowledge that weights of classifier represent the center of e
 
 
 ### Citation
-**TODO**
+If you find **Minimum Hyperspherical Energy** or **SphereFace-Plus** useful in your research, please consider to cite:
+
+	@article{Liu2018MHE,
+      title={Learning towards Minimum Hyperspherical Energy},
+      author={Liu, Weiyang and Lin, Rongmei and Liu, Zhen and Liu, Lixin and Yu, Zhiding and Dai, Bo and Song, Le},
+      journal={arXiv preprint arXiv:1805.09298},
+      year={2018}
+	}
 
 ### Requirements
 1. Requirements for [CUDA 8.0 for Linux](https://developer.nvidia.com/cuda-80-ga2-download-archive)
@@ -101,6 +109,10 @@ If you have any questions about installation caffe with cudnn 6.0, try to refer 
 2. Get pretrained models from [Google Drive](https://drive.google.com/open?id=1Vn7LRz_c1zU0sJ7-bKDp_O4t_AMQiozL) | [BaiduYunDisk](https://pan.baidu.com/s/19ueWgPHw85UFXDw8G657gw).
 
     Download all pretrained models from [Google Drive](https://drive.google.com/open?id=1Vn7LRz_c1zU0sJ7-bKDp_O4t_AMQiozL) | [BaiduYunDisk](https://pan.baidu.com/s/19ueWgPHw85UFXDw8G657gw). And move them into **`$SPHEREFACE_PLUS_ROOT/train/pretrained_model/`**. We initialize our network with such pretrained models for computing inter class distances better.
+
+	Pretrained Models |Single|Double|Triple|Quadruple
+	:---:|:---:|:---:|:---:|:---:
+    ACC|96.22%|98.87%|98.93%|99.27%
 	
 
 3. Train the sphereface model.
@@ -186,6 +198,13 @@ If you have any questions about installation caffe with cudnn 6.0, try to refer 
 
 
 All models can find in [Google Drive](https://drive.google.com/drive/folders/1mDGdp-BOuawF345P3BQ9Q8Z6KOEPX3fC?usp=sharing) | [BaiduYunDisk](https://pan.baidu.com/s/13KawnSc2i6IWuFzkq1vnhg)
+
+See more detail in [Training Notes](https://github.com/wy1iu/sphereface-plus/TrainingNotes.md)
+
+### Reference
+
+1. [caffe-sphereface](https://github.com/wy1iu/sphereface)
+2. [caffe-AM-Softmax](https://github.com/happynear/AMSoftmax)
 
 ### Contact
 

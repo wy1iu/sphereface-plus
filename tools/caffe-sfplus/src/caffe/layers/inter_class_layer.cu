@@ -58,7 +58,7 @@ template <typename Dtype>
 __global__ void InterClassMean_not_forward_gpu(int nthreads, const int K_, Dtype alpha_,
             const Dtype* label, const Dtype * weight_mean_data, const Dtype * weight,
             Dtype* inter_class_loss) {
-  inter_class_loss[0] = (Dtype)0.; //initialized top[0]
+  inter_class_loss[0] = (Dtype)0.; // initialized top[0]
 }
 
 
@@ -114,9 +114,9 @@ __global__ void InterClassAmong_batch_forward_gpu(int nthreads, const int K_, Dt
         tmp += pow((weight[i * K_ + k] - weight[label_value * K_ + k]),2);
       }
     }
-    inter_class_loss[0] += tmp / (Dtype)nthreads; //maximize
+    inter_class_loss[0] += tmp / (Dtype)nthreads; //maximize inter class dist. parameter name 'loss' here isn't rigorous
     weight_wise_dist_sq[0] += tmp / (Dtype)nthreads; //storage dist
-    //inter_class_loss[0] += (Dtype)1. * nthreads / (tmp + (Dtype)1e-5); //minimize
+    //inter_class_loss[0] += (Dtype)1. * nthreads / (tmp + (Dtype)1e-5); //minimize inter class loss
   }
 }
 
@@ -159,7 +159,7 @@ __global__ void InterClassAmong_backward_gpu(int nthreads, const int K_, Dtype a
   }
 }
 
-template <typename Dtype> // faster implement O(n^2) //only minibathc
+template <typename Dtype> // faster implement O(n^2) // only minibatch
 __global__ void InterClassAmong_batch_backward_gpu(int nthreads, const int K_, Dtype alpha_,
           const Dtype* weight, const Dtype * weight_mean_data, const Dtype* weight_wise_dist_sq,
           Dtype * weight_diff,const Dtype* label) {
@@ -234,8 +234,8 @@ void InterClassLayer<Dtype>::Forward_gpu(const vector<Blob<Dtype>*>& bottom,
                                     weight_mean_.mutable_gpu_data());
       }
       
-      //compute inter_class_dist
-      if(iter_%10==1){
+      // compute inter_class_dist
+      if(iter_ % 10 == 1){
         nthreads = M_;
         const Dtype* weight_mean_data = weight_mean_.gpu_data();
         InterClassMean_forward_gpu<Dtype><<<CAFFE_GET_BLOCKS(nthreads),
@@ -266,8 +266,8 @@ void InterClassLayer<Dtype>::Forward_gpu(const vector<Blob<Dtype>*>& bottom,
           CAFFE_CUDA_NUM_THREADS>>>(nthreads, temp_mean_norm_gpu.mutable_gpu_data(), 
                                     weight_mean_.mutable_gpu_data());
       }
-      if(iter_%10==1){ // iter_size == 1
-      //because forward propagation is very slow
+      if(iter_ % 10 == 1){ // iter_size == 1
+      // because forward propagation is very slow
       // use the same interclass_dist 10 times when back propagation 
 
       //if(iter_%20==1 ||iter_%20==2){ // iter_size == 2
