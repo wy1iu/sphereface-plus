@@ -1,4 +1,4 @@
-# SphereFace+* : Training Notes
+# *SphereFace+* : Training Notes
 
 1. Interclass distance fluctuates near a constant because of using weight norm. The value of this constant depends on the batch size.
 2. When finetuning Hyperparameter 'alpha', be careful about A-softmax loss exploding. Too big value of 'alpha' causes loss exploding and too small reduces the ability of MHE regularization.
