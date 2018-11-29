@@ -32,6 +32,13 @@ If you find **SphereFace+** useful in your research, please consider to cite:
              journal={NIPS},
              year={2018}
 	  }
+	  
+	  @InProceedings{Liu2017CVPR,
+             title = {SphereFace: Deep Hypersphere Embedding for Face Recognition},
+             author = {Liu, Weiyang and Wen, Yandong and Yu, Zhiding and Li, Ming and Raj, Bhiksha and Song, Le},
+             booktitle = {CVPR},
+             year = {2017}
+	  }
 
 ### Requirements
 1. Requirements for [CUDA 8.0 for Linux](https://developer.nvidia.com/cuda-80-ga2-download-archive)
