@@ -26,10 +26,10 @@ Inspired by prior knowledge that weights of classifier represent the center of e
 ### Citation
 If you find **SphereFace+** useful in your research, please consider to cite the following paper:
 
-	  @article{LiuNIPS18,
+	  @InProceedings{LiuNIPS18,
              title={Learning towards Minimum Hyperspherical Energy},
              author={Liu, Weiyang and Lin, Rongmei and Liu, Zhen and Liu, Lixin and Yu, Zhiding and Dai, Bo and Song, Le},
-             journal={NIPS},
+             booktitle={NIPS},
              year={2018}
 	  }
 
