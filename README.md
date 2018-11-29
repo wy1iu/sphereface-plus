@@ -24,7 +24,7 @@ Inspired by prior knowledge that weights of classifier represent the center of e
 
 
 ### Citation
-If you find **SphereFace+** useful in your research, please consider to cite:
+If you find **SphereFace+** useful in your research, please consider to cite the following paper:
 
 	  @article{LiuNIPS18,
              title={Learning towards Minimum Hyperspherical Energy},
@@ -32,7 +32,9 @@ If you find **SphereFace+** useful in your research, please consider to cite:
              journal={NIPS},
              year={2018}
 	  }
-	  
+
+and the original **SphereFace**:
+
 	  @InProceedings{Liu2017CVPR,
              title = {SphereFace: Deep Hypersphere Embedding for Face Recognition},
              author = {Liu, Weiyang and Wen, Yandong and Yu, Zhiding and Li, Ming and Raj, Bhiksha and Song, Le},
