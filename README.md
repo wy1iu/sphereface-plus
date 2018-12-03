@@ -141,7 +141,7 @@ If you have any questions about installation caffe with cudnn 6.0, try to refer 
 	    bash train_m_triple.sh
 	    ```
 
-See more traing detail in [Training Notes](https://github.com/wy1iu/sphereface-plus/TrainingNotes.md)
+See more traing detail in [Training Notes](https://github.com/wy1iu/sphereface-plus/blob/master/TrainingNotes.md)
 
 #### Part 3: Test
 
