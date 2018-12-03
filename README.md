@@ -17,7 +17,7 @@ SphereFace+ is released under the MIT License (refer to the LICENSE file for det
 
 
 ### Introduction
-Inspired by prior knowledge that weights of classifier represent the center of each class respectively, we purpose SphereFace-Plus by applying Minimum  Hyperspherical Energy (MHE), which can effectively enhance inter-class separability, to [SphereFace](https://github.com/wy1iu/sphereface). Our experiments verify MHE's abilities of improving inter-class feature separability and further boosting the performance of SphereFace for face recognition.
+Inspired by prior knowledge that weights of classifier represent the center of each class respectively, we propose SphereFace+ by applying Minimum Hyperspherical Energy (MHE), which can effectively enhance inter-class feature separability, to [SphereFace](https://github.com/wy1iu/sphereface). Our experiments verify MHE's abilities of improving inter-class feature separability and further boosting the performance of SphereFace for face recognition.
 
 
 ### Citation
