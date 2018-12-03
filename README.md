@@ -5,9 +5,6 @@
 
 SphereFace+ is released under the MIT License (refer to the LICENSE file for details).
 
-### TODO
-- [ ] installation
-
 ### Content
 1. [Introduction](#introduction)
 2. [Citation](#citation)
@@ -52,10 +49,9 @@ and the original **SphereFace**:
 **Attension:** If you used other CUDA or cuDNN versions, the training process would fail frequently.
 
 ### Installation
-1. Clone recursively the SphereFace-Plus repository. We'll call the directory that you cloned SphereFace-Plus as **`SPHEREFACE_PLUS_ROOT`**.  
-**TODO**
+1. Clone recursively the SphereFace-Plus repository. We'll call the directory that you cloned SphereFace-Plus as **`SPHEREFACE_PLUS_ROOT`**. The installation basically follows [SphereFace](https://github.com/wy1iu/sphereface).
 
-1. Build Caffe and matcaffe
+2. Build Caffe and matcaffe
 
     ```Shell
     cd $SPHEREFACE_PLUS_ROOT/tools/caffe-sphereface
