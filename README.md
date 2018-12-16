@@ -212,7 +212,7 @@ All models can find in [Google Drive](https://drive.google.com/drive/folders/1mD
     
 2. **Finetuning the CASIA-pretrained model on new datasets could potentially stablize the training difficulty.**
 
-    When you are using our model for some new datasets, you can also consider finetune the CASIA-trained models on the new datasets.
+    When you are using our model for some new datasets, you can also consider finetuning the CASIA-trained models on the new datasets.
 
 
 
