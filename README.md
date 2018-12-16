@@ -12,6 +12,7 @@ SphereFace+ is released under the MIT License (refer to the LICENSE file for det
 4. [Installation](#installation)
 5. [Usage](#usage)
 6. [Results](#results)
+7. [Notes](#notes)
 7. [Reference](#reference)
 8. [Contact](#contact)
 
@@ -203,6 +204,16 @@ See more traing detail in [Training Notes](https://github.com/wy1iu/sphereface-p
 
 
 All models can find in [Google Drive](https://drive.google.com/drive/folders/1mDGdp-BOuawF345P3BQ9Q8Z6KOEPX3fC?usp=sharing) | [BaiduYunDisk](https://pan.baidu.com/s/13KawnSc2i6IWuFzkq1vnhg)
+
+### Notes
+1. **Pretraining is a very effective way to avoid training difficulty.**
+
+    As one can learn from our implementation, we use the pretrained model from the original SphereFace, and finetune the SphereFace model using the new loss of SphereFace+. It can effectively reduce the training difficulty of the new loss and improve the results consistently.
+    
+2. **Finetuning the CASIA-pretrained model on new datasets could potentially stablize the training difficulty.**
+
+    When you are using our model for some new datasets, you can also consider finetune the CASIA-trained models on the new datasets.
+
 
 
 ### Reference
