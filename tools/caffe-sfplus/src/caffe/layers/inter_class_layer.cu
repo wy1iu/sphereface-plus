@@ -37,28 +37,30 @@ __global__ void Weight_mean_normB_gpu(int nthreads,Dtype* temp_mean_norm,  Dtype
   }
 }
 
+// We have inter_class_loss == pow(inter_class_dist, -1)
+
 /************ Inter class type: Mean ************/
 template <typename Dtype>
 __global__ void InterClassMean_forward_gpu(int nthreads, const int K_, Dtype alpha_,
             const Dtype* label, const Dtype * weight_mean_data, const Dtype * weight,
-            Dtype* inter_class_loss) {
-  inter_class_loss[0] = (Dtype)0.; //initialized top[0]
+            Dtype* inter_class_dist) {
+  inter_class_dist[0] = (Dtype)0.; //initialized top[0]
   CUDA_KERNEL_LOOP(index, nthreads) {
     const int label_value = static_cast<int>(label[index]);
     Dtype cosine_dist = (Dtype)0.;
     for(int i = 0; i < K_; i++){
       cosine_dist += weight_mean_data[i] * weight[label_value * K_ +i];
     }
-    inter_class_loss[0] += (Dtype)1. / (Dtype)nthreads - cosine_dist / (Dtype)nthreads; //maximize
+    inter_class_dist[0] += (Dtype)1. / (Dtype)nthreads - cosine_dist / (Dtype)nthreads; 
   }
-  //inter_class_loss[0] = (Dtype)1. / inter_class_loss[0]; //minimize
+  //inter_class_loss = (Dtype)1. / inter_class_dist[0]; 
 }
 
 template <typename Dtype>
 __global__ void InterClassMean_not_forward_gpu(int nthreads, const int K_, Dtype alpha_,
             const Dtype* label, const Dtype * weight_mean_data, const Dtype * weight,
-            Dtype* inter_class_loss) {
-  inter_class_loss[0] = (Dtype)0.; // initialized top[0]
+            Dtype* inter_class_dist) {
+  inter_class_dist[0] = (Dtype)0.; // initialized top[0]
 }
 
 
@@ -79,10 +81,10 @@ __global__ void InterClassMean_backward_gpu(int nthreads, const int K_, Dtype al
 template <typename Dtype>
 __global__ void InterClassAmong_forward_gpu(int nthreads, const int K_, Dtype alpha_,
             Dtype* weight_wise_dist_sq, Dtype* weight_wise_diff_data,
-            const Dtype * weight, Dtype* inter_class_loss) {
-  // inter_class_loss approximates a constant 
+            const Dtype * weight, Dtype* inter_class_dist) {
+  // inter_class_dist approximates a constant 
   // because weights have been normalized and the number of weights is large enough
-  inter_class_loss[0] = (Dtype)0.;
+  inter_class_dist[0] = (Dtype)0.;
   Dtype tmp = (Dtype)0.;
   CUDA_KERNEL_LOOP(i, nthreads) {
     for (int j = 0; j < nthreads; j++){
@@ -93,18 +95,18 @@ __global__ void InterClassAmong_forward_gpu(int nthreads, const int K_, Dtype al
       }
     }
   }
-  inter_class_loss[0] = tmp / (Dtype)nthreads; //maximize
+  inter_class_dist[0] = tmp / (Dtype)nthreads; 
   weight_wise_dist_sq[0] = tmp / (Dtype)nthreads; //storage dist
-  //inter_class_loss[0] = (Dtype)1. * nthreads / (tmp + (Dtype)1e-5); //minimize
+  //inter_class_loss = (Dtype)1. * nthreads / (tmp + (Dtype)1e-5); // minimize inter_class_loss
 }
 
 
 template <typename Dtype>
 __global__ void InterClassAmong_batch_forward_gpu(int nthreads, const int K_, Dtype alpha_,
             Dtype* weight_wise_dist_sq, Dtype* weight_wise_diff_data,
-            const Dtype * weight, Dtype* inter_class_loss,const Dtype* label,
+            const Dtype * weight, Dtype* inter_class_dist,const Dtype* label,
             const int M_) {
-  inter_class_loss[0] = (Dtype)0.;
+  inter_class_dist[0] = (Dtype)0.;
   weight_wise_dist_sq[0] = (Dtype)0.;
   CUDA_KERNEL_LOOP(i, nthreads) {
     Dtype tmp = (Dtype)0.;
@@ -114,9 +116,9 @@ __global__ void InterClassAmong_batch_forward_gpu(int nthreads, const int K_, Dt
         tmp += pow((weight[i * K_ + k] - weight[label_value * K_ + k]),2);
       }
     }
-    inter_class_loss[0] += tmp / (Dtype)nthreads; //maximize inter class dist. parameter name 'loss' here isn't rigorous
+    inter_class_dist[0] += tmp / (Dtype)nthreads; 
     weight_wise_dist_sq[0] += tmp / (Dtype)nthreads; //storage dist
-    //inter_class_loss[0] += (Dtype)1. * nthreads / (tmp + (Dtype)1e-5); //minimize inter class loss
+    //inter_class_loss += (Dtype)1. * nthreads / (tmp + (Dtype)1e-5); //minimize inter class loss
   }
 }
 
@@ -124,14 +126,14 @@ __global__ void InterClassAmong_batch_forward_gpu(int nthreads, const int K_, Dt
 template <typename Dtype>
 __global__ void InterClassAmong_not_forward_gpu(int nthreads, const int K_, Dtype alpha_,
             Dtype* weight_wise_dist_sq, Dtype* weight_wise_diff_data,
-            const Dtype * weight, Dtype* inter_class_loss) {
-  inter_class_loss[0] = (Dtype)0.;
+            const Dtype * weight, Dtype* inter_class_dist) {
+  inter_class_dist[0] = (Dtype)0.;
 }
 
 //template <typename Dtype> // too slow O(n^3)
 //__global__ void InterClassAmong_backward_gpu(int nthreads, const int K_, Dtype alpha_,
 //          const Dtype* weight, const Dtype* weight_wise_dist_sq, Dtype * weight_diff,
-//          const Dtype* inter_class_loss) {
+//          const Dtype* inter_class_dist) {
 //  //Dtype temp_coff = pow(weight_wise_dist_sq[0],2);
 //  //Dtype total_coff = (Dtype)-4. * alpha_ / (temp_coff + (Dtype)1e-5);
 //  Dtype total_coff = (Dtype)-4. * alpha_;

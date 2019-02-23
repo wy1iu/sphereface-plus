@@ -184,16 +184,20 @@ void InterClassLayer<Dtype>::Forward_cpu(const vector<Blob<Dtype>*>& bottom,
   const Dtype* weight = this->blobs_[0]->cpu_data();
   const Dtype* label = bottom[1]->cpu_data();
   Dtype* top_data = top[0]->mutable_cpu_data();
-  Dtype inter_class_loss = (Dtype)0.;
+  Dtype inter_class_dist = (Dtype)0.;
+  Dtype tmp_dist = (Dtype)0.;
   const Dtype* weight_mean_data =  weight_mean_.cpu_data();
 
+  /************************* Hyperspherical Energy, Alias Inter Class Loss *************************/
+  // We have inter_class_loss == pow(inter_class_dist, -1)
   switch (type_) {
     case InterClassParameter_InterClassType_MEAN: {
       for (int i = 0; i < M_; i++) {
         const int label_value = static_cast<int>(label[i]);
-        inter_class_loss -= caffe_cpu_dot(K_, weight_mean_data, weight + label_value * K_);
+        tmp_dist -= caffe_cpu_dot(K_, weight_mean_data, weight + label_value * K_);
       }
-      inter_class_loss = inter_class_loss / M_ + (Dtype)1.; //maximize
+      
+      inter_class_dist = tmp_dist / M_ + (Dtype)1.; 
       break;
     }
     case InterClassParameter_InterClassType_AMONG: {
@@ -201,19 +205,21 @@ void InterClassLayer<Dtype>::Forward_cpu(const vector<Blob<Dtype>*>& bottom,
         for(int j = 0 ; j < M_; j++){
           const int label_value = static_cast<int>(label[j]);
           caffe_sub(K_, weight + i * K_, weight + label_value * K_, weight_wise_diff_.mutable_cpu_data());
-          inter_class_loss += caffe_cpu_dot(K_, weight_wise_diff_.cpu_data(), weight_wise_diff_.cpu_data());
+          tmp_dist += caffe_cpu_dot(K_, weight_wise_diff_.cpu_data(), weight_wise_diff_.cpu_data());
         }
       }
-      inter_class_loss = inter_class_loss / (Dtype)N_; //maximize
-      weight_wise_dist_sq_.mutable_cpu_data()[0] = inter_class_loss; //storage dist
-      //inter_class_loss = (Dtype)1. * N_ / (inter_class_loss + (Dtype)1e-5); //minimize
+      //inter_class_loss = (Dtype)1. * N_ / (tmp_dist + (Dtype)1e-5); // minimize inter_class_loss
+      inter_class_dist = tmp_dist / (Dtype)N_; 
+      weight_wise_dist_sq_.mutable_cpu_data()[0] = inter_class_dist; // storage dist
       break;
     }
     default: {
       LOG(FATAL) << "Unknown InterClassType.";
     }
   }
-  top_data[0] = inter_class_loss;
+  // In order to monitor the [inter class dist] more easily and speed up in GPU version,
+  // we output the [inter class dist] in log but not the [inter class loss].
+  top_data[0] = inter_class_dist;
 }
 
 template <typename Dtype>
