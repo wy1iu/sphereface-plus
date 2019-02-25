@@ -37,8 +37,6 @@ __global__ void Weight_mean_normB_gpu(int nthreads,Dtype* temp_mean_norm,  Dtype
   }
 }
 
-// We have inter_class_loss == pow(inter_class_dist, -1)
-
 /************ Inter class type: Mean ************/
 template <typename Dtype>
 __global__ void InterClassMean_forward_gpu(int nthreads, const int K_, Dtype alpha_,

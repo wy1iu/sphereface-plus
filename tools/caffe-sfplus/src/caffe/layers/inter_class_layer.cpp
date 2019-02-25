@@ -189,7 +189,6 @@ void InterClassLayer<Dtype>::Forward_cpu(const vector<Blob<Dtype>*>& bottom,
   const Dtype* weight_mean_data =  weight_mean_.cpu_data();
 
   /************************* Hyperspherical Energy, Alias Inter Class Loss *************************/
-  // We have inter_class_loss == pow(inter_class_dist, -1)
   switch (type_) {
     case InterClassParameter_InterClassType_MEAN: {
       for (int i = 0; i < M_; i++) {
